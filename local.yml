@@ -1,0 +1,17 @@
+- hosts: localhost
+  vars:
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    home: "{{ lookup('env', 'HOME') }}"
+    repos: "{{ lookup('env', 'HOME') }}/Repos"
+    dotfiles: "{{ lookup('env', 'HOME') }}/Repos/dotfiles"
+  pre_tasks:
+    - name: Run the equivalent of "pacman -Syu"
+      become: true
+      become_user: root
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+  tasks:
+    - include_tasks: tasks/terminal-setup.yml
+    - include_tasks: tasks/install-paru.yml
