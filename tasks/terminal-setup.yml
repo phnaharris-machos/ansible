@@ -1,10 +1,14 @@
 - name: Install alacritty, tmux, zsh
   become: true
   community.general.pacman:
-    name: ["alacritty", "tmux", "zsh"]
+    name:
+      - alacritty
+      - tmux
+      - zsh
+      - stow
     state: latest
 
 - name: Set login shell of user {{ ansible_env.USER }} to zsh with `usermod`
   ansible.builtin.command: usermod --shell /usr/bin/zsh {{ ansible_env.USER }}
   become: true
-  changed_when: false
+  changed_when: true

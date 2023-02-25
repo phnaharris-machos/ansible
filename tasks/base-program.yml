@@ -1,0 +1,47 @@
+- name: Run the equivalent of "pacman -Syu"
+  become: true
+  become_user: root
+  community.general.pacman:
+    update_cache: true
+    upgrade: true
+
+- name: Base program to live in linux
+  shell: |
+    paru -S --noconfirm \
+      anydesk-bin \
+      brave-bin \
+      croc \
+      cronie \
+      discord \
+      dunst \
+      fcitx5 \
+      fcitx5-configtool \
+      fcitx5-gtk \
+      fcitx5-qt \
+      fcitx5-unikey \
+      firefox \
+      fzf \
+      gimp \
+      git \
+      google-chrome \
+      grub \
+      htop \
+      nautilus \
+      neofetch \
+      obs-studio \
+      pavucontrol \
+      pulseaudio \
+      qbittorrent \
+      skypeforlinux-stable-bin \
+      slack-desktop-wayland \
+      spotify \
+      teamviewer \
+      telegram-desktop \
+      tree \
+      virt-manager \
+      visual-studio-code-bin \
+      vlc \
+      wireguard-tools \
+      zathura \
+      zathura-pdf-mupdf \
+      wget

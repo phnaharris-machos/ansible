@@ -1,0 +1,27 @@
+- name: environment
+  become: true
+  become_user: root
+  file:
+    src: "{{ playbook_dir }}/etc/environment"
+    dest: "/etc/environment"
+    mode: 0644
+    state: hard
+    force: true
+- name: pacman.conf
+  become: true
+  become_user: root
+  file:
+    src: "{{ playbook_dir }}/etc/pacman.conf"
+    dest: "/etc/pacman.conf"
+    mode: 0644
+    state: hard
+    force: true
+- name: grub
+  become: true
+  become_user: root
+  file:
+    src: "{{ playbook_dir }}/etc/default/grub"
+    dest: "/etc/default/grub"
+    mode: 0644
+    state: hard
+    force: true

@@ -1,0 +1,28 @@
+- name: Needed service stuff
+  shell: |
+    paru -S --noconfirm \
+      blueman \
+      bolt \
+      brightnessctl \
+      tlp-rdw \
+      ly
+
+- name: Make sure a service unit is enabled and running
+  ansible.builtin.systemd:
+    enabled: true
+    state: started
+    name: "{{ item }}"
+  loop:
+    - NetworkManager
+    - cups
+    - ly.service
+    - avahi-daemon
+    - fstrim.timer
+    - firewalld
+    - acpid
+    - bluetooth
+    - libvirtd
+    - cronie
+    - teamviewerd
+    - docker.service
+    - containerd.service

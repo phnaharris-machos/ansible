@@ -1,9 +1,3 @@
-- name: Ensure Repos directory exists.
-  file:
-    dest: "{{ repos }}"
-    mode: 0700
-    state: directory
-
 - name: Clonning paru
   git:
     repo: https://aur.archlinux.org/paru.git
@@ -12,7 +6,6 @@
     update: yes
 
 - name: Install paru
-  become: true
   ansible.builtin.shell:
     cmd: makepkg -si --needed --noconfirm
     chdir: "{{ repos }}/paru"

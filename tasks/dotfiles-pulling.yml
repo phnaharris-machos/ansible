@@ -1,0 +1,11 @@
+- name: Clonning dotfiles
+  git:
+    repo: https://github.com/phnaharris-machos/dotfiles.git
+    dest: "{{ dotfiles }}"
+    clone: yes
+    update: yes
+
+- name: Stowing dotfiles
+  ansible.builtin.shell:
+    cmd: stow --restow */
+    chdir: "{{ dotfiles }}/XDG_CONFIG_HOME"

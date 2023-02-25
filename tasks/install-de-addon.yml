@@ -1,0 +1,21 @@
+- name: Stuff for any wayland DE
+  shell: |
+    paru -S --noconfirm \
+      archlinux-keyring \
+      xdg-desktop-portal-wlr \
+      wofi \
+      gnome-keyring \
+      grimblast-git \
+      network-manager-applet \
+      networkmanager \
+      nomacs \
+      openresolv \
+      otf-font-awesome \
+      ttf-jetbrains-mono-nerd \
+      polkit-gnome \
+      qt5-wayland \
+      swappy \
+      swaylock \
+      wl-clipboard \
+      wlr-randr \
+      wf-recorder

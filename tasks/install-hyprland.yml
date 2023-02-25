@@ -1,0 +1,6 @@
+- name: Install hyprland
+  shell: |
+    paru -S --noconfirm hyprland-bin hyprpicker-git waybar-hyprland hyprpaper
+
+  tags:
+    - hyprland

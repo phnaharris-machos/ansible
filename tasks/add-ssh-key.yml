@@ -1,4 +1,6 @@
 - name: Add ssh key
   become: true
-  ansible.builtin.shell:
-    cmd: ssh_priv=$(ls {{ ansible_env.HOME }}/.ssh/*.pub | sed 's/\.pub//g'); for priv in $ssh_priv do ssh-add $priv done
+  become_user: root
+  shell: ssh_priv=$(ls {{ ansible_env.HOME }}/.ssh/*.pub | sed 's/\.pub//g'); for priv in $ssh_priv do ssh-add $priv done
+  tags:
+    - ssh

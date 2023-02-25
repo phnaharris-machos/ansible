@@ -1,0 +1,40 @@
+- name: Run the equivalent of "pacman -Syu"
+  become: true
+  become_user: root
+  community.general.pacman:
+    update_cache: true
+    upgrade: true
+
+- name: Programming
+  shell: |
+    paru -S --noconfirm \
+      bun-bin \
+      docker \
+      elixir \
+      fnm-bin \
+      go \
+      nodejs-commitizen \
+      postman-bin \
+
+- name: Database
+  shell: |
+    paru -S --noconfirm \
+      clickhouse \
+      mongodb-bin \
+      mongodb-compass \
+      sqlitebrowser
+
+- name: Neovim stuff
+  shell: |
+    paru -S --noconfirm \
+      neovim \
+      clang \
+      eslint_d \
+      delve \
+      fd \
+      ripgrep \
+      prettierd \
+      python-black \
+      shfmt \
+      tidy 
+      # codelldb-bin

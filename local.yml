@@ -3,6 +3,7 @@
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     home: "{{ lookup('env', 'HOME') }}"
+    xdg_config_home: "{{ lookup('env', 'HOME') }}/.config"
     repos: "{{ lookup('env', 'HOME') }}/Repos"
     dotfiles: "{{ lookup('env', 'HOME') }}/Repos/dotfiles"
   pre_tasks:
@@ -13,5 +14,53 @@
         update_cache: true
         upgrade: true
   tasks:
-    - include_tasks: tasks/terminal-setup.yml
+    - name: Ensure Repos directory exists.
+      file:
+        dest: "{{ repos }}"
+        mode: 0700
+        state: directory
+
+    - include_tasks: tasks/etc-conf.yml # OK
+      tags:
+        - etc
+        - newmach
+    - include_tasks: tasks/install-sublime.yml # OK
+      tags:
+        - sublime
+        - dev
+        - newmach
+    - include_tasks: tasks/terminal-setup.yml # OK
+      tags:
+        - program
+        - terminal
+        - dev
+        - newmach
+    - include_tasks: tasks/dotfiles-pulling.yml # OK
+      tags:
+        - dotfiles
+        - newmach
     - include_tasks: tasks/install-paru.yml
+      tags:
+        - program
+        - paru
+        - newmach
+    - include_tasks: tasks/install-hyprland.yml
+      tags:
+        - hyprland
+    - include_tasks: tasks/install-de-addon.yml
+      tags:
+        - hyprland
+    - include_tasks: tasks/base-program.yml
+      tags:
+        - program
+        - de
+        - newmach
+    - include_tasks: tasks/coding.yml
+      tags:
+        - baseprogram
+        - de
+        - newmach
+    - include_tasks: tasks/enable-service.yml
+      tags:
+        - systemd
+        - newmach
